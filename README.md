@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kai — AI Personal Memory Hub
+
+**"你的所有AI对话，成为你的第二大脑"**
+
+Kai 是 AI 时代的个人知识库：自动汇聚你所有的 AI 对话，智能提取精华，让你随时搜索、回顾、复用。
+
+## Features
+
+- **One-Click Import** — 粘贴任何 AI 对话文本，自动分析
+- **AI-Powered Insights** — GPT-4o 自动提取关键洞察、标签、摘要
+- **Instant Search** — 跨所有对话全文搜索
+- **Personal Notes** — 为每个对话添加个人笔记
+- **Multi-Source Support** — 支持 ChatGPT、Claude、其他 AI 工具
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router) + Tailwind CSS v4
+- **Database**: SQLite + Prisma
+- **AI**: OpenAI GPT-4o
+- **Auth**: JWT
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Set up environment
+cp .env.example .env
+# Add your OPENAI_API_KEY
+
+# Initialize database
+npx prisma db push
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Description |
+|----------|-------------|
+| `OPENAI_API_KEY` | Your OpenAI API key (required) |
+| `JWT_SECRET` | JWT signing secret |
+| `NEXT_PUBLIC_APP_URL` | App URL |
 
-## Learn More
+## Routes
 
-To learn more about Next.js, take a look at the following resources:
+- `/` — Landing page
+- `/login` — Sign in
+- `/register` — Create account
+- `/kai/dashboard` — Main dashboard
+- `/kai/import` — Import conversation
+- `/kai/conversations/[id]` — Conversation detail
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## API Endpoints
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `POST /api/auth/register` — Create account
+- `POST /api/auth/login` — Sign in
+- `GET /api/auth/me` — Get current user
+- `POST /api/auth/logout` — Sign out
+- `GET /api/conversations` — List conversations (query: `q`, `source`)
+- `POST /api/conversations` — Import & analyze conversation
+- `GET /api/conversations/[id]` — Get conversation
+- `PATCH /api/conversations/[id]` — Update notes
+- `DELETE /api/conversations/[id]` — Delete conversation
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
