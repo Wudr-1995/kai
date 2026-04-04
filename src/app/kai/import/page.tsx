@@ -57,6 +57,18 @@ Great question! Cleanup functions run before the component unmounts...`;
         <p className="text-slate-500 mt-1">Paste an AI conversation and we&apos;ll extract the key insights</p>
       </div>
 
+      <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
+        <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+          <span className="text-sm">🤖</span>
+        </div>
+        <div>
+          <p className="text-sm font-medium text-amber-900">Demo Mode Active</p>
+          <p className="text-sm text-amber-700 mt-0.5">
+            Running with mock AI data. Conversations will show sample analysis. Add your <code className="px-1 py-0.5 bg-amber-100 rounded text-xs">OPENAI_API_KEY</code> to enable real GPT-4o analysis.
+          </p>
+        </div>
+      </div>
+
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label className="block text-sm font-medium text-slate-700 mb-1.5">AI Source</label>
