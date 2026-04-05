@@ -1,10 +1,12 @@
 import OpenAI from 'openai';
 
 const apiKey = process.env.OPENAI_API_KEY;
+const baseURL = process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1';
 const isDemoMode = !apiKey || apiKey === 'your-openai-api-key-here';
 
 const openai = isDemoMode ? null : new OpenAI({
   apiKey: apiKey,
+  baseURL: baseURL,
 });
 
 export interface ConversationAnalysis {
@@ -80,7 +82,7 @@ export async function analyzeConversation(rawText: string): Promise<Conversation
   }
 
   const response = await openai!.chat.completions.create({
-    model: 'gpt-4o',
+    model: 'doubao-pro-32k',
     messages: [
       {
         role: 'system',
